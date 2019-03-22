@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_today"
+        android:icon="@drawable/bottom1"
+        android:title="today" />
+
+    <item
+        android:id="@+id/navigation_failure"
+        android:icon="@drawable/bottom2"
+        android:title="failures" />
+
+    <item
+        android:id="@+id/navigation_life"
+        android:icon="@drawable/bottom3"
+        android:title="life" />
+
+    <item
+        android:id="@+id/navigation_todo"
+        android:icon="@drawable/bottom4"
+        android:title="ToDo" />
+
+</menu>

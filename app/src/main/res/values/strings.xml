@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Flag Application</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!--底部导航栏-->
+
+    <string name="txt_bottom1">Today</string>
+    <string name="txt_bottom2">Task</string>
+    <string name="txt_bottom3">Trend</string>
+    <string name="txt_bottom4">Diary</string>
+    <string name="txt_bottom5">Me</string>
+    <!-- Calendar -->
+    <string name="month_half_name_format">MMM</string>
+    <string name="month_name_format">MMMM</string>
+    <string name="day_name_format">EEEEE</string>
+
+    <!-- Agenda -->
+    <string name="agenda_event_day_duration">d</string>
+    <string name="agenda_event_no_events">No events</string>
+</resources>
