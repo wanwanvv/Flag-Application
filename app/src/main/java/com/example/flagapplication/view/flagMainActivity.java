@@ -171,7 +171,7 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
                 setTitleName("Task");
                 break;
             case R.id.txt_menu_bottom_trend:
-                title_layout.setVisibility(View.GONE);
+                title_layout.setVisibility(View.VISIBLE);
                 IsTab = 3;
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_trend);

@@ -3,4 +3,83 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+
+        <EditText
+            android:id="@+id/time_set_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="30"
+            android:hint="Input your focus time or rotate the timer"
+            android:textColor="#000000"
+            android:textColorHint="#cccccc"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+
+        <EditText
+            android:id="@+id/hint_set_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="30"
+            android:hint="Set what you will focus on"
+            android:inputType="text"
+            android:textColor="#000000"
+            android:textColorHint="#cccccc"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/start_timer"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape"
+            android:text="START TIMER"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/pause_timer"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="PAUSE TIMER"
+            android:background="@drawable/shape"
+            android:textColor="#ffffff"
+            />
+
+    </LinearLayout>
+
+
+
+    <com.example.flagapplication.userView.CircleTimerView
+        android:id="@+id/ctv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+    </com.example.flagapplication.userView.CircleTimerView>
+
+
+
 </LinearLayout>
