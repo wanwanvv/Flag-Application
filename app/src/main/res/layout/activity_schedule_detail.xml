@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="26dp"
-                android:background="@drawable/ic_access_time_grey_600_24dp" />
+                android:background="@drawable/add_alarm" />
 
             <TextView
                 android:id="@+id/detail_alarm_date"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="26dp"
-                android:background="@drawable/ic_alarm_grey_600_24dp" />
+                android:background="@drawable/add_clock" />
 
             <TextView
                 android:id="@+id/detail_alarm_start_end_time"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="26dp"
-                android:background="@drawable/ic_notifications_grey_600_24dp" />
+                android:background="@drawable/add_remind" />
 
             <TextView
                 android:id="@+id/detail_alarm_remind"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="26dp"
-                android:background="@drawable/ic_location_on_grey_600_24dp" />
+                android:background="@drawable/add_location" />
 
             <TextView
                 android:id="@+id/detail_alarm_local"
@@ -143,7 +143,7 @@
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="40dp"
-                android:text="北京"
+                android:text="ChongQing"
                 android:textColor="#000" />
         </LinearLayout>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="26dp"
-                android:background="@drawable/ic_menu_grey_600_24dp" />
+                android:background="@drawable/add_notes" />
 
             <TextView
                 android:id="@+id/detail_alarm_description"

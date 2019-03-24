@@ -59,10 +59,15 @@ public class DayPager extends BasePager{
 
     }
     private void chooseDayFromClick(){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        list= new AlarmDBSupport(mActivity).getDataByDay(calendar);
-        setDateToShow(calendar,list);
+        BusProvider.getInstance().toObserverable()
+                .subscribe(event ->{
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(System.currentTimeMillis());
+                    list= new AlarmDBSupport(mActivity).getDataByDay(calendar);
+                    setDateToShow(calendar,list);
+
+                        });
+
     }
     /**
      * 设置显示的日期
@@ -76,7 +81,7 @@ public class DayPager extends BasePager{
         week.setText(weekStr);
 
         if(list.size()==0){
-            haveOrNot.setText("There is no flag informatio and click the "+" to add it");
+            haveOrNot.setText("There is no flag and click the button to add a new one:");
         }else {
             haveOrNot.setText("This is what you need todo today:");
         }

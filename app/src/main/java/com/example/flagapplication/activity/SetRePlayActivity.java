@@ -33,6 +33,7 @@ public class SetRePlayActivity  extends AppCompatActivity implements View.OnClic
         everyMonth_replay.setOnClickListener(this);
         everyDay_replay.setOnClickListener(this);
         everyYear_replay.setOnClickListener(this);
+        left_back.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {

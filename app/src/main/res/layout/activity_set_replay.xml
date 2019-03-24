@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_replay_grey_600_24dp"/>
+            android:background="@drawable/add_replay"/>
 
         <TextView
             android:id="@+id/tv_no_replay"

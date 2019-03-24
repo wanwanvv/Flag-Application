@@ -32,5 +32,13 @@
     <dimen name="agenda_event_view_padding_top">5dp</dimen>
     <dimen name="agenda_event_view_padding_right">15dp</dimen>
     <dimen name="agenda_event_view_padding_bottom">5dp</dimen>
+    <dimen name="height_120">120dp</dimen>
+    <dimen name="height_60">60dp</dimen>
+    <dimen name="width_100">100dp</dimen>
+    <dimen name="width_120">120dp</dimen>
+    <dimen name="height_170">170dp</dimen>
+    <!--饼状图-->
+    <dimen name="pie_chart_text1_size">42sp</dimen>
+    <dimen name="pie_chart_text2_size">16dp</dimen>
 
 </resources>

@@ -40,14 +40,14 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
     private final int TAB_ME = 4;
     private int IsTab;
 
-    private Fragment1 todayFragment;
-    private Fragment2 taskFragment;
+    private Fragment2 todayFragment;
+    private Fragment1 taskFragment;
     private Fragment3 trendFragment;
     private Fragment4 diaryFragment;
     private Fragment5 meFragment;
 
     private FragmentAdapter adapter;
-    private ImageView title_bar_more, title_bar_change;
+    private ImageView title_bar_change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
 
         initID();//初始化绑定组件id
         initView();//初始化视图
-        title_layout.setVisibility(View.GONE);
     }
 
     /**
@@ -73,7 +72,6 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
         txt_menu_bottom_diary = (TextView) findViewById(R.id.txt_menu_bottom_diary);
         txt_menu_bottom_me = (TextView) findViewById(R.id.txt_menu_bottom_me);
 
-        title_bar_more = (ImageView) findViewById(R.id.title_bar_more);
         title_layout=findViewById(R.id.title_up_layout);
         /**
         title_bar_more.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +87,6 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
         txt_menu_bottom_trend.setOnClickListener(this);
         txt_menu_bottom_diary.setOnClickListener(this);
         txt_menu_bottom_me.setOnClickListener(this);
-        title_bar_more.setOnClickListener(this);
         title_bar_change.setOnClickListener(this);
 
         //ViewPager滑动监听,切换界面
@@ -102,23 +99,23 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
             public void onPageSelected(int position) {
                 Log.i("main_viewpager", "position--" + position);
                 switch (position) {
-                    case TAB_TODAY://点击首页模块执行
+                    case TAB_TODAY:
                         IsTab = 1;
                         jumpTodayFragment();
                         break;
-                    case TAB_TASK://点击巡店模块执行
+                    case TAB_TASK:
                         IsTab = 2;
                         jumpTaskFragment();
                         break;
-                    case TAB_TREND://点击拜访模块执行
+                    case TAB_TREND:
                         IsTab = 3;
                         jumpTrendFragment();
                         break;
-                    case TAB_DIARY://点击培训模块执行
+                    case TAB_DIARY:
                         IsTab = 4;
                         jumpDiaryFragment();
                         break;
-                    case TAB_ME://点击个人中心模块执行
+                    case TAB_ME:
                         IsTab = 5;
                         jumpMeFragment();
                         break;
@@ -136,8 +133,8 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
      */
     public void initView() {
         //isLoad = false;
-        todayFragment = new Fragment1();
-        taskFragment = new Fragment2();
+        taskFragment = new Fragment1();
+        todayFragment = new Fragment2();
         trendFragment = new Fragment3();
         diaryFragment = new Fragment4();
         meFragment = new Fragment5();
@@ -146,7 +143,7 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
         setSelected(txt_menu_bottom_today);
         viewPager_content.setCurrentItem(TAB_TODAY, false);
         //主要在viewPager设置当前页时，页面跳转时使用。false：代表快速切换 true：表示切换速度慢
-        setTitleName("任务清单");
+        setTitleName("Flag");
         viewPager_content.setOffscreenPageLimit(2);
         //setOffscreenPageLimit设置预加载页面数，且决定超过多少页fragment就会被destroy
 
@@ -154,60 +151,48 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        /**
-        if (!isLoad) {
-            Toast.makeText(mContext,"你尚未登录,请先登录", Toast.LENGTH_SHORT).show();
-        }
-         **/
+
         switch (v.getId()) {
-            case R.id.txt_menu_bottom_today://点击首页模块执行
+            case R.id.txt_menu_bottom_today:
+                title_layout.setVisibility(View.VISIBLE);
                 IsTab = 1;
-                title_bar_more.setVisibility(View.GONE);
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_today);
                 viewPager_content.setCurrentItem(TAB_TODAY, false);
-                setTitleName("任务清单");
+                setTitleName("Flag");
 
                 break;
-            case R.id.txt_menu_bottom_task://点击巡店模块执行
+            case R.id.txt_menu_bottom_task:
+                title_layout.setVisibility(View.GONE);
                 IsTab = 2;
-                title_bar_more.setVisibility(View.VISIBLE);
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_task);
                 viewPager_content.setCurrentItem(TAB_TASK, false);
-                setTitleName("全部任务");
+                setTitleName("Task");
                 break;
-            case R.id.txt_menu_bottom_trend://点击拜访模块执行
+            case R.id.txt_menu_bottom_trend:
+                title_layout.setVisibility(View.GONE);
                 IsTab = 3;
-                title_bar_more.setVisibility(View.GONE);
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_trend);
                 viewPager_content.setCurrentItem(TAB_TREND, false);
-                setTitleName("统计");
+                setTitleName("Trend");
                 break;
-            case R.id.txt_menu_bottom_diary://点击培训模块执行
+            case R.id.txt_menu_bottom_diary:
+                title_layout.setVisibility(View.GONE);
                 IsTab = 4;
-                title_bar_more.setVisibility(View.GONE);
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_diary);
                 viewPager_content.setCurrentItem(TAB_DIARY, false);
-                setTitleName("日记");
+                setTitleName("Diary");
                 break;
-            case R.id.txt_menu_bottom_me://点击个人中心模块执行
+            case R.id.txt_menu_bottom_me:
+                title_layout.setVisibility(View.VISIBLE);
                 IsTab = 5;
-                title_bar_more.setVisibility(View.GONE);
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_me);
                 viewPager_content.setCurrentItem(TAB_ME, false);
-                setTitleName("个人中心");
-                break;
-            case R.id.title_bar_more:
-                if (IsTab == 1) {//新建巡店
-                    Toast.makeText(mActivity, "新建暂未开放", Toast.LENGTH_SHORT).show();
-                } else if (IsTab == 2) {//新建拜访
-                    //Toast.makeText(mActivity, "新建暂未开放", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(flagMainActivity.this, CreateTaskActivity.class));
-                }
+                setTitleName("Me");
                 break;
             default:
                 break;
@@ -218,55 +203,50 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
      * 显示主界面TodayFragemnt
      */
     private void jumpTodayFragment() {
-        title_bar_more.setVisibility(View.GONE);
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_today);
         viewPager_content.setCurrentItem(TAB_TODAY, false);
-        setTitleName("任务清单");
+        setTitleName("Flag");
     }
 
     /**
      * 显示TaskFragment
      */
     public void jumpTaskFragment() {//
-        title_bar_more.setVisibility(View.VISIBLE);
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_task);
         viewPager_content.setCurrentItem(TAB_TASK, false);
-        setTitleName("全部任务");
+        setTitleName("Task");
     }
 
     /**
      * 显示DorkFragment
      */
     public void jumpTrendFragment() {
-        title_bar_more.setVisibility(View.GONE);
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_trend);
         viewPager_content.setCurrentItem(TAB_TREND, false);
-        setTitleName("学霸模式");
+        setTitleName("Trend");
     }
 
     /**
      * 显示StatisticFragment,提供给新建拜访完成后调用
      */
     public void jumpDiaryFragment() {
-        title_bar_more.setVisibility(View.GONE);
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_diary);
         viewPager_content.setCurrentItem(TAB_DIARY, false);
-        setTitleName("统计");
+        setTitleName("Diary");
     }
 
     /**
      * 显示MeFragment
      */
     public void jumpMeFragment() {
-        title_bar_more.setVisibility(View.GONE);
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_me);
         viewPager_content.setCurrentItem(TAB_ME, false);
-        setTitleName("个人中心");
+        setTitleName("Me");
     }
 
     //当选中的时候变色,改变底部文字颜色

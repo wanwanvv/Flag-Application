@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.flagapplication.R;
+import com.example.flagapplication.view.flagMainActivity;
 
 public class welcomeActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class welcomeActivity extends AppCompatActivity {
 
     //跳转到主界面
     public void getHome(){
-        Intent intent = new Intent(welcomeActivity.this,MainActivity.class);
+        Intent intent = new Intent(welcomeActivity.this, flagMainActivity.class);
         startActivity(intent);
         finish();
     }

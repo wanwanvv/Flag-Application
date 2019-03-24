@@ -48,21 +48,15 @@ import java.util.Locale;
 
 
 
-public class Fragment1 extends BaseFragment implements RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener{
+public class Fragment1 extends BaseFragment{
 
-    ImageButton left_menu;
     TextView title_day;
     ImageView title_arrow;
     LinearLayout calendar_open_close;
     //打开关闭CalendarView
     private boolean isOpen = true;//日历视图是否显示
-    ImageButton go_today;
+
     FrameLayout main_frame;
-    RapidFloatingActionButton labelListSampleRfab;
-    RapidFloatingActionLayout labelListSampleRfal;
-    RapidFloatingActionButton fab_button_group;
-    private RapidFloatingActionHelper rfabHelper;
-    RapidFloatingActionLayout fab_layout;
     DrawerLayout main_draw_layout;
     public CalendarView calendar_view;
     private View tView;
@@ -131,7 +125,6 @@ public class Fragment1 extends BaseFragment implements RapidFloatingActionConten
         initCalendarInfo();
         initLayoutView();
         setMonthTitle();
-        initFab();
 
         //弹窗权限验证
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -190,12 +183,11 @@ public class Fragment1 extends BaseFragment implements RapidFloatingActionConten
 
     private void initLayoutView() {
         //初始化控件
-        fab_layout=tView.findViewById(R.id.fab_layout);
-        fab_button_group=tView.findViewById(R.id.fab_button_group);
+
         calendar_view =tView.findViewById(R.id.calendar_view);
         title_day=tView.findViewById(R.id.title_day);
         main_frame=tView.findViewById(R.id.main_frame);
-        left_menu=tView.findViewById(R.id.left_menu);
+
         title_arrow=tView.findViewById(R.id.title_arrow);
         calendar_open_close=tView.findViewById(R.id.calendar_open_close);
         calendar_open_close.setOnClickListener(new View.OnClickListener() {
@@ -256,47 +248,8 @@ public class Fragment1 extends BaseFragment implements RapidFloatingActionConten
     /**
      * 初始化 Fab
      */
-    private void initFab() {
-        RapidFloatingActionContentLabelList rfaContent = new RapidFloatingActionContentLabelList(getActivity());
-        rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
-        List<RFACLabelItem> items = new ArrayList<>();
-        items.add(new RFACLabelItem<Integer>()
-                .setLabel("FLAG")
-                .setResId(R.drawable.ic_access_alarms_white_18dp)
-                .setIconNormalColor(0xffd84315)
-                .setIconPressedColor(0xfff58f98)
-                .setLabelSizeSp(10)
-                .setWrapper(0)
-        );
-        rfaContent
-                .setItems(items)
-                .setIconShadowRadius(5)
-                .setIconShadowColor(0xffffd524)
-                .setIconShadowDy(5)
-        ;
-        rfabHelper = new RapidFloatingActionHelper(
-                mActivity,
-                fab_layout,
-                fab_button_group,
-                rfaContent
-        ).build();
 
-    }
 
-    @Override
-    public void onRFACItemLabelClick(int i, RFACLabelItem rfacLabelItem) {
-        Toast.makeText(getActivity(), "Click Label !", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRFACItemIconClick(int i, RFACLabelItem rfacLabelItem) {
-        if (i == 0) {
-            Intent intent = new Intent(getActivity(), CreateTaskActivity.class);
-            intent.putExtra("type", "mainToAdd");
-            startActivity(intent);
-            //finish();
-        }
-    }
 
     /**
      * 设置月份

@@ -64,6 +64,11 @@ public class HomePager extends BasePager implements StickyListHeadersListView.On
         List eventList = new ArrayList<>();
         List<AlarmBean> alllist = support.getAll();
         mockList(eventList, alllist);
+        if(eventList==null)
+        {
+            Log.d("EventList报错","是空的");
+        }
+        Log.d("Mock是否完成","MockList无错误");
 
         // 初始化AgendaView的数据适配器
         agendaAdapter = new AgendaAdapter(mAgendaCurrentDayTextColor);
@@ -85,6 +90,10 @@ public class HomePager extends BasePager implements StickyListHeadersListView.On
 
             }
         });
+        if(eventList==null)
+        {
+            Log.d("Calendar.EventList报错","是空的");
+        }
 
         //将日期与event进行匹配
         CalendarManager.getInstance().loadEvents(eventList);
@@ -168,7 +177,7 @@ public class HomePager extends BasePager implements StickyListHeadersListView.On
 
             BaseCalendarEvent event1 = new BaseCalendarEvent(bean.getId(),bean.getTitle(), bean.getDescription(), bean.getLocal(),
                     ContextCompat.getColor(mActivity, colorId), startTime1, endTime1, isAllday, startAndEndTime);
-            System.out.println("---" + event1.toString());
+            System.out.println("执行到输出event1---" + event1.toString());
             eventList.add(event1);
         }
 

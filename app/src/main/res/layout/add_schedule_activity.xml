@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_access_time_grey_600_24dp"/>
+                        android:background="@drawable/add_alarm"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_replay_grey_600_24dp"/>
+                        android:background="@drawable/add_replay"/>
 
                     <TextView
                         android:id="@+id/alarm_replay"
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_notifications_grey_600_24dp"/>
+                        android:background="@drawable/add_remind"/>
 
                     <TextView
                         android:id="@+id/alarm_remind"
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_vibration_grey_600_24dp"/>
+                        android:background="@drawable/add_vibrattion"/>
 
                     <TextView
                         android:id="@+id/alarm_vibrate"
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_queue_music_grey_600_24dp"/>
+                        android:background="@drawable/add_music"/>
 
                     <TextView
                         android:id="@+id/alarm_tone_Path"
@@ -258,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_location_on_grey_600_24dp"/>
+                        android:background="@drawable/add_location"/>
 
                     <TextView
                         android:id="@+id/alarm_local"
@@ -289,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_extension_grey_600_24dp"/>
+                        android:background="@drawable/add_color"/>
 
                     <TextView
                         android:id="@+id/alarm_color"
@@ -320,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_menu_grey_600_24dp"/>
+                        android:background="@drawable/add_notes"/>
 
                     <EditText
                         android:id="@+id/alarm_description"
@@ -331,7 +331,7 @@
                         android:lines="5"
                         android:background="@null"
                         android:textSize="14sp"
-                        android:hint="Add notes"/>
+                        android:hint="Add description"/>
                 </RelativeLayout>
 
                 <View

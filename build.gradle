@@ -4,7 +4,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+
         maven {
+
             url "http://mvn.leancloud.cn/nexus/content/repositories/public"//仓库地址
         }
 
@@ -21,6 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
         maven {
             url "http://mvn.leancloud.cn/nexus/content/repositories/public"//仓库地址
         }

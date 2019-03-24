@@ -1,9 +1,7 @@
 package com.example.flagapplication.fragment;
 
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,7 +18,7 @@ import com.example.flagapplication.utils.Events;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContentFragment extends BasePagerFragment{
+public class ContentFragment2 extends BasePagerFragment{
     ViewPager vpContent;
     private List<BasePager> mPageList;
     private AlarmDBSupport support;
@@ -51,11 +49,14 @@ public class ContentFragment extends BasePagerFragment{
         mPageList= new ArrayList<>();
 
         mPageList.add(homePager);
+        mPageList.add(dayPager);
 
 
         vpContent.setAdapter(new VpContentAdapter());
 
         buildHomePager();
+        vpContent.setCurrentItem(1,false);
+        dayPager.initData();
 
     }
 

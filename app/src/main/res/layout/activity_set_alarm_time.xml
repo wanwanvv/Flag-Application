@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_notifications_grey_600_24dp"/>
+            android:background="@drawable/add_remind"/>
 
         <TextView
             android:id="@+id/tv_no_replay"

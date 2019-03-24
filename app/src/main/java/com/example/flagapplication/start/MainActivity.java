@@ -12,7 +12,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.example.flagapplication.R;
-import com.example.flagapplication.view.flagActivity;
+import com.example.flagapplication.view.flagMainActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button btn_login,btn_register,btn_forget;
@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if(e==null){
-                            startActivity(new Intent(MainActivity.this, flagActivity.class));
+                            startActivity(new Intent(MainActivity.this, flagMainActivity.class));
                             finish();
                         }
                         else{
-                            Toast.makeText(MainActivity.this,"用户名或密码错误",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"User name or password error!",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

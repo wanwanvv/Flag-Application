@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_location_on_grey_600_24dp"/>
+            android:background="@drawable/add_location"/>
 
         <EditText
             android:id="@+id/ed_local"
