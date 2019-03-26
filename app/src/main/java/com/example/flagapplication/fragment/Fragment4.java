@@ -84,15 +84,15 @@ public class Fragment4 extends BaseFragment implements CircleTimerView.CircleTim
     private void initView() {
         mTimer = cView.findViewById(R.id.ctv);
         mTimer.setCircleTimerListener(this);
-        //mTimerSet = cView.findViewById(R.id.time_set_et);
-        //mHintSet = cView.findViewById(R.id.hint_set_et);
+        mTimerSet = cView.findViewById(R.id.time_set_et);
+        mHintSet = cView.findViewById(R.id.hint_set_et);
         start_timer = cView.findViewById(R.id.start_timer);
         pause_timer = cView.findViewById(R.id.pause_timer);
         start_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-/**
+
                 try
                 {
                     mTimer.setCurrentTime(Integer.parseInt(mTimerSet.getText().toString()));
@@ -101,11 +101,11 @@ public class Fragment4 extends BaseFragment implements CircleTimerView.CircleTim
                 {
                     e.printStackTrace();
                 }
- **/
+
 
                 //mTimer.setCurrentTime(Integer.parseInt(mTimerSet.getText().toString()));
                 mTimer.startTimer();
-                //mTimer.setHintText(mHintSet.getText().toString());
+                mTimer.setHintText(mHintSet.getText().toString());
 
 
 
@@ -118,11 +118,13 @@ public class Fragment4 extends BaseFragment implements CircleTimerView.CircleTim
                 builder.setPositiveButton("Play", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        /**
                         Intent intent = new Intent();
                         intent.setClass(getActivity(), AudioService.class);
                         getActivity().startService(intent);
                        // Log.d("StartService","Service started successufully!");
                         getActivity().bindService(intent,conn,Context.BIND_AUTO_CREATE);
+                         **/
 
 
                         Toast.makeText(getActivity(), "You have started to play the White noise!", Toast.LENGTH_LONG).show();
@@ -151,12 +153,13 @@ public class Fragment4 extends BaseFragment implements CircleTimerView.CircleTim
             @Override
             public void onClick(View v) {
                 mTimer.pauseTimer();
-                audioService.onDestroy();
-                /**
+                //audioService.onDestroy();
+                Toast.makeText(getActivity(), "You have stopped the White noise and the timer!", Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), AudioService.class);
                 getActivity().stopService(intent);
-                **/
+
             }
         });
 
