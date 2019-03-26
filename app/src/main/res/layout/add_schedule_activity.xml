@@ -331,7 +331,7 @@
                         android:lines="5"
                         android:background="@null"
                         android:textSize="14sp"
-                        android:hint="Add description"/>
+                        android:hint="Add notes"/>
                 </RelativeLayout>
 
                 <View

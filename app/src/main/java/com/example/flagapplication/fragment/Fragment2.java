@@ -69,10 +69,10 @@ public class Fragment2 extends BaseFragment implements RapidFloatingActionConten
         //根据你传入的开始结束值，构建生成Calendar数据（各种Item，JavaBean）
         if(getActivity()==null)
         {
-            Log.d("Calendar","mActivity为空！！！");
+            Log.d("Calendar","mActivity is null！！！");
         }
         CalendarManager.getInstance(getActivity()).buildCal(minDate, maxDate, Locale.getDefault());
-        System.out.print("本地Local为："+Locale.getDefault());
+        System.out.print("Local is："+Locale.getDefault());
 
     }
     public void initView(){

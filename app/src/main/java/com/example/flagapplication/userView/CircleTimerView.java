@@ -39,13 +39,13 @@ public class CircleTimerView extends View {
 
     // Default color
     private static final int DEFAULT_CIRCLE_COLOR = 0xFFE9E2D9;
-    private static final int DEFAULT_CIRCLE_BUTTON_COLOR = 0xFFFFFFFF;
+    private static final int DEFAULT_CIRCLE_BUTTON_COLOR = 0xFFffd524;//黄色0xffd524
     private static final int DEFAULT_LINE_COLOR = 0xFFE9E2D9;
-    private static final int DEFAULT_HIGHLIGHT_LINE_COLOR = 0xFF68C5D7;
-    private static final int DEFAULT_NUMBER_COLOR = 0x99866A60;
-    private static final int DEFAULT_TIMER_NUMBER_COLOR = 0xFFFA7777;
-    private static final int DEFAULT_TIMER_COLON_COLOR = 0x80FA7777;//浅绿
-    private static final int DEFAULT_TIMER_TEXT_COLOR = 0x99000000;//深红
+    private static final int DEFAULT_HIGHLIGHT_LINE_COLOR = 0xFFFA7777;//浅绿0xFF68C5D7
+    private static final int DEFAULT_NUMBER_COLOR = 0x99866A60;//灰色0x99866A60
+    private static final int DEFAULT_TIMER_NUMBER_COLOR = 0xFFffd524;//红色0xFFFA7777
+    private static final int DEFAULT_TIMER_COLON_COLOR = 0xFFffd524;
+    private static final int DEFAULT_TIMER_TEXT_COLOR = 0x99000000;
 
     // Paint
     private Paint mCirclePaint;

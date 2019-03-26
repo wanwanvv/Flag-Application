@@ -1,28 +1,49 @@
 package com.example.flagapplication.view;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.flagapplication.R;
 import com.example.flagapplication.activity.BaseFragmentActivity;
 import com.example.flagapplication.activity.CreateTaskActivity;
+import com.example.flagapplication.alarmremind.SendAlarmBroadcast;
 import com.example.flagapplication.fragment.Fragment1;
 import com.example.flagapplication.fragment.Fragment2;
 import com.example.flagapplication.fragment.Fragment3;
 import com.example.flagapplication.fragment.Fragment4;
 import com.example.flagapplication.fragment.Fragment5;
+import com.example.flagapplication.playAudience.AudioService;
+import com.example.flagapplication.utils.PrefUtils;
+
+import java.util.Locale;
 
 public class flagMainActivity extends BaseFragmentActivity implements View.OnClickListener{
     private ViewPager viewPager_content;
@@ -48,15 +69,36 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
 
     private FragmentAdapter adapter;
     private ImageView title_bar_change;
+    private boolean isAllowAlert = false;
+    //音乐播放所需变量
+    private static final int NOTIFICATION_ID = 1; // 如果id设置为0,会导致不能设置为前台service
+    public static NotificationManager manager;
+    RemoteViews remoteViews;
+    Notification notification;
+    private Button btn;
+    private TextView tv;
+    static flagMainActivity appCompatActivity;
+    public static int state = 0;
+    //白噪音播放
+    public static AudioService audioService;
+    NotificationChannel channel;
+    String id;
+    String description;
+    int importance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flagmain);
+        if(appCompatActivity == null){
+            appCompatActivity = this;
+        }
 
         initID();//初始化绑定组件id
         initView();//初始化视图
+
     }
+
 
     /**
      * 初始化控件加载
@@ -176,15 +218,7 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
                 title_bar_change.setVisibility(View.GONE);
                 setSelected(txt_menu_bottom_trend);
                 viewPager_content.setCurrentItem(TAB_TREND, false);
-                setTitleName("Trend");
-                break;
-            case R.id.txt_menu_bottom_diary:
-                title_layout.setVisibility(View.GONE);
-                IsTab = 4;
-                title_bar_change.setVisibility(View.GONE);
-                setSelected(txt_menu_bottom_diary);
-                viewPager_content.setCurrentItem(TAB_DIARY, false);
-                setTitleName("Diary");
+                setTitleName("Statistic");
                 break;
             case R.id.txt_menu_bottom_me:
                 title_layout.setVisibility(View.VISIBLE);
@@ -194,10 +228,61 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
                 viewPager_content.setCurrentItem(TAB_ME, false);
                 setTitleName("Me");
                 break;
+            case R.id.txt_menu_bottom_diary:
+                title_layout.setVisibility(View.GONE);
+                IsTab = 4;
+                title_bar_change.setVisibility(View.GONE);
+                setSelected(txt_menu_bottom_diary);
+                viewPager_content.setCurrentItem(TAB_DIARY, false);
+                setTitleName("Focus");
+                break;
+                /**
+                if(state==0){
+                    //打开白噪音
+                    android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(flagMainActivity.this);
+                    builder.setIcon(R.drawable.diary);
+                    builder.setTitle("Notice");
+                    builder.setMessage("Do you want to play the white noise?");
+                    //确定按钮
+                    builder.setPositiveButton("Play", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            createNotifcation();
+                            Log.d("createNotification:","CreateNotification successufully!");
+                            Intent intent = new Intent();
+                            intent.setClass(flagMainActivity.this, AudioService.class);
+                            startService(intent);
+                            Log.d("SatrtService","Service started successufully!");
+                            bindService(intent,conn,Context.BIND_AUTO_CREATE);
+                            Log.d("BindService:","BindService successfully!");
+                            Toast.makeText(flagMainActivity.this, "You have started the White noise. Please control it in the notification bar!", Toast.LENGTH_LONG).show();
+                        }
+
+                    });
+                    //Toast.makeText(flagMainActivity.this, "You have started the White noise. Please control it in the notification!", Toast.LENGTH_LONG).show();
+
+                    //取消按钮
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    //显示出对话框
+                    builder.show();
+
+                }
+                 **/
+                //设置通知栏
+
             default:
                 break;
         }
     }
+
+
 
     /**
      * 显示主界面TodayFragemnt
@@ -226,7 +311,7 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
         title_bar_change.setVisibility(View.GONE);
         setSelected(txt_menu_bottom_trend);
         viewPager_content.setCurrentItem(TAB_TREND, false);
-        setTitleName("Trend");
+        setTitleName("Statistic");
     }
 
     /**
@@ -292,43 +377,93 @@ public class flagMainActivity extends BaseFragmentActivity implements View.OnCli
             return TAB_COUNT;
         }
     }
+    //使用ServiceConnection来监听Service状态的变化
+    private ServiceConnection conn = new ServiceConnection() {
 
-    /**
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SharePreUtil.SetShareString(mContext, "userid", "");//Activity死亡清空id保存
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(dorkFragment instanceof IOnFocusListenable) {
-            ((IOnFocusListenable) dorkFragment).onKeyDown(keyCode,event);
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            // TODO Auto-generated method stub
+            audioService = null;
         }
 
-        //监听返回键，如果当前界面不是首界面，或没切换过界面，切到首界面
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (IsTab != 1) {
-                IsTab = 1;
-                jumpTodayFragment();
-                return true;
-            }
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder binder) {
+            //这里我们实例化audioService,通过binder来实现
+            audioService = ((AudioService.AudioBinder)binder).getService();
+
         }
-        return super.onKeyDown(keyCode, event);
+    };
+    public static flagMainActivity getInstance(){
+        return appCompatActivity;
+    }
+    //设置通知栏
+    public void createNotifcation(){
+        remoteViews = new RemoteViews(getPackageName(),
+                R.layout.widget);
+        remoteViews.setTextViewText(R.id.wt_title, "White noise");
+        remoteViews.setImageViewResource(R.id.icon1, R.drawable.add_music);
+        if(state == 0){
+            Log.d("createNotification","state==0");
+            System.out.print("createNotification.state(0)="+state);
+            remoteViews.setImageViewResource(R.id.wt_play,R.drawable.pause);
+        }else {
+            Log.d("createNotification","state==1");
+            System.out.print("createNotification.state(1)="+state);
+            remoteViews.setImageViewResource(R.id.wt_play,R.drawable.play);
+        }
+
+        Intent previous=new Intent("com.examle.flagapplication.broadcasttest.PREVIOUS");
+        PendingIntent pi_previous = PendingIntent.getBroadcast(flagMainActivity.this,0,
+                previous,PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.wt_previous,pi_previous);
+
+
+        Intent play=new Intent("com.example.flagapplication.broadcasttest.PLAY");
+        PendingIntent pi_play = PendingIntent.getBroadcast(flagMainActivity.this,1,
+                play,PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.wt_play,pi_play);
+
+        Intent next=new Intent("com.example.flagapplication.broadcasttest.NEXT");
+        PendingIntent pi_next = PendingIntent.getBroadcast(flagMainActivity.this,2,
+                next,PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.wt_next,pi_next);
+
+        Intent clear=new Intent("com.example.flagapplication.broadcasttest.CLEAR");
+        PendingIntent pi_clear = PendingIntent.getBroadcast(flagMainActivity.this,3,
+                clear,PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.wt_clear,pi_clear);
+        manager = (NotificationManager) getSystemService(
+                Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= 26){
+            id = "channel_1";
+            description = "143";
+            importance = NotificationManager.IMPORTANCE_LOW;
+            channel = new NotificationChannel(id, description, importance);
+            manager.createNotificationChannel(channel);
+            Log.d("CreateChannel","Channel has created!");
+            notification = new Notification.Builder(flagMainActivity.this, id)
+                    .setContentTitle("white noise")
+                    .setTicker("White noise")
+                    .setWhen(System.currentTimeMillis())
+                    .setAutoCancel(true)
+                    .setCustomBigContentView(remoteViews)
+                    .setSmallIcon(R.drawable.add_music)
+                    .build();
+
+        }else{
+            notification.icon =R.drawable.add_music;
+            notification.tickerText = "White noise";
+            notification.when = System.currentTimeMillis();
+            notification.flags = Notification.FLAG_AUTO_CANCEL;
+            notification.contentView = remoteViews;
+
+        }
+
+
+        manager.notify(NOTIFICATION_ID,notification);
+
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        Rect rect = new Rect();
-        // /取得整个视图部分,注意，如果你要设置标题样式，这个必须出现在标题样式之后，否则会出错
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        int top = rect.top;
-
-        if(dorkFragment instanceof IOnFocusListenable) {
-            ((IOnFocusListenable) dorkFragment).onWindowFocusChanged(top);
-        }
-    }
-**/
 
 }

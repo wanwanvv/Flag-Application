@@ -126,6 +126,7 @@ public class Fragment1 extends BaseFragment{
         initLayoutView();
         setMonthTitle();
 
+
         //弹窗权限验证
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             isAllowAlert = PrefUtils.getBoolean(getActivity(),"isAllowAlert",false);
@@ -135,6 +136,7 @@ public class Fragment1 extends BaseFragment{
         }else {
             SendAlarmBroadcast.startAlarmService(getActivity());
         }
+
 
 
         return tView;
@@ -155,6 +157,7 @@ public class Fragment1 extends BaseFragment{
         title_arrow.startAnimation(anim);
     }
 
+
     //权限申请相关方法
     private static final int REQUEST_CODE = 1;
 
@@ -166,9 +169,13 @@ public class Fragment1 extends BaseFragment{
         //使用startActivityForResult启动授权界面来完成
     }
 
+
+
+
     /**
      * 权限申请弹窗
      */
+
     private void showPermissionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Do you allow to open the popup?")
@@ -180,6 +187,7 @@ public class Fragment1 extends BaseFragment{
                 });
         builder.create().show();
     }
+
 
     private void initLayoutView() {
         //初始化控件
@@ -238,10 +246,10 @@ public class Fragment1 extends BaseFragment{
         //根据你传入的开始结束值，构建生成Calendar数据（各种Item，JavaBean）
         if(getActivity()==null)
         {
-            Log.d("Calendar","mActivity为空！！！");
+            Log.d("Calendar","mActivity is null！！！");
         }
         CalendarManager.getInstance(getActivity()).buildCal(minDate, maxDate, Locale.getDefault());
-        System.out.print("本地Local为："+Locale.getDefault());
+        System.out.print("Local is："+Locale.getDefault());
 
     }
 
@@ -262,6 +270,7 @@ public class Fragment1 extends BaseFragment{
             }
         });
     }
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -271,10 +280,12 @@ public class Fragment1 extends BaseFragment{
                 Toast.makeText(getActivity(),"The alarm permission has been opened!",Toast.LENGTH_SHORT).show();
                 PrefUtils.setBoolean(getActivity(), "isAllowAlert", true);
             }else {
+                System.out.print("The alart_window_request fail!");
                 PrefUtils.setBoolean(getActivity(), "isAllowAlert", false);
             }
         }
     }
+
 
     @Override
     public void onDestroyView() {

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,32 +16,14 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="30"
-            android:hint="Input your focus time or rotate the timer"
+            android:hint="Rotate the button on the timer to set the time."
             android:textColor="#000000"
             android:textColorHint="#cccccc"
             android:textSize="15sp"
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
 
-
-        <EditText
-            android:id="@+id/hint_set_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="30"
-            android:hint="Set what you will focus on"
-            android:inputType="text"
-            android:textColor="#000000"
-            android:textColorHint="#cccccc"
-            android:textSize="15sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

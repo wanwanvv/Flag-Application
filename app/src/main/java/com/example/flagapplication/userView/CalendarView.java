@@ -247,7 +247,7 @@ public class CalendarView extends LinearLayout {
      */
     private void collapseCalendarView(){
         MarginLayoutParams layoutParams = (MarginLayoutParams) getLayoutParams();
-        int height = (int) (getResources().getDimension(R.dimen.calendar_header_height) + 2 * getResources().getDimension(R.dimen.day_cell_height));
+        int height = (int) (getResources().getDimension(R.dimen.calendar_header_height) + 4 * getResources().getDimension(R.dimen.day_cell_height));
         layoutParams.height = height;
         setLayoutParams(layoutParams);
     }

@@ -57,13 +57,7 @@ dependencies {
     api 'com.github.wangjiegulu:RapidFloatingActionButton:1.0.3'
     api 'com.github.wangjiegulu:AndroidBucket:1.0.4'
     api 'com.nineoldandroids:library:2.4.0'
-    /**
-    //网络框架 volley retrofit
-    api 'com.mcxiaoke.volley:library:1.0.19'
-    api 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    api 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
-    **/
+
     //加载图片
     api 'com.squareup.picasso:picasso:2.5.2'
     //图表

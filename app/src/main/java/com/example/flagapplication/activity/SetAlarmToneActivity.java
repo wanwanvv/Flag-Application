@@ -36,6 +36,7 @@ public class SetAlarmToneActivity extends AppCompatActivity {
         left_alarm_tone_back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                mediaPlayer.stop();
                 finish();
             }
         } );
@@ -46,6 +47,7 @@ public class SetAlarmToneActivity extends AppCompatActivity {
                 intent.putExtra("tone", toneName);
                 intent.putExtra("tonePath",tonePath);
                 setResult(4, intent);
+                mediaPlayer.stop();
                 finish();
             }
         } );

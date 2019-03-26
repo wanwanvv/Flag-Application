@@ -101,9 +101,9 @@ public class WeekPager extends BasePager {
         recycleAdapter.notifyDataSetChanged();
 
         if(listList.size()==0){
-            info.setText("本周还没有日程信息，点击加号添加");
+            info.setText("There is no flag and click the button to add a new one!");
         }else {
-            info.setText("本星期的日程信息如下显示：");
+            info.setText("What you need todo as follows:");
         }
 
         //Item 点击事件

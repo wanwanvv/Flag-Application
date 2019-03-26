@@ -7,8 +7,8 @@
 
     <string name="txt_bottom1">Today</string>
     <string name="txt_bottom2">History</string>
-    <string name="txt_bottom3">Trend</string>
-    <string name="txt_bottom4">Diary</string>
+    <string name="txt_bottom3">Statistic</string>
+    <string name="txt_bottom4">Focus</string>
     <string name="txt_bottom5">Me</string>
     <!-- Calendar -->
     <string name="month_half_name_format">MMM</string>
@@ -17,5 +17,5 @@
 
     <!-- Agenda -->
     <string name="agenda_event_day_duration">d</string>
-    <string name="agenda_event_no_events">No events</string>
+    <string name="agenda_event_no_events">No flags</string>
 </resources>
